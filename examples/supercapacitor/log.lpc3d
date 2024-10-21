@@ -1,0 +1,39 @@
+Equilibration succeeded at 0 steps!
+propagation
+Timestep 100
+Timestep 200
+Timestep 300
+Timestep 400
+Timestep 500
+Timestep 600
+Timestep 700
+Timestep 800
+Timestep 900
+Doing FT.
+FT done-bloc-1 (initial integral = 425941.8080552651).
+Halfwidth (ppm)-bloc-1: 0.7092198760724293.
+Halfwidth (Hz)-bloc-1: 200.00000505242505.
+VACF Diffusion coefficient_1: 5.085217e+03
+VACF Diffusion coefficient in direction x_1: 5.140371e+03
+VACF Diffusion coefficient in direction y_1: 5.153734e+03
+VACF Diffusion coefficient in direction z_1: 4.961564e+03
+------------------------------------------------------------------------------
+Doing FT.
+FT done-bloc-2 (initial integral = 208510.87391019156).
+Halfwidth (ppm)-bloc-2: 0.7092198760724293.
+Halfwidth (Hz)-bloc-2: 200.00000505242505.
+VACF Diffusion coefficient_2: 3.333334e+04
+VACF Diffusion coefficient in direction x_2: 3.333334e+04
+VACF Diffusion coefficient in direction y_2: 3.333334e+04
+VACF Diffusion coefficient in direction z_2: 3.333334e+04
+------------------------------------------------------------------------------
+Doing FT.
+FT done-bloc-3 (initial integral = 499651.41444794927).
+Halfwidth (ppm)-bloc-3: 0.7092198760724293.
+Halfwidth (Hz)-bloc-3: 200.00000505242505.
+VACF Diffusion coefficient_3: 2.748132e+04
+VACF Diffusion coefficient in direction x_3: 2.750431e+04
+VACF Diffusion coefficient in direction y_3: 2.750166e+04
+VACF Diffusion coefficient in direction z_3: 2.743813e+04
+------------------------------------------------------------------------------
+The execution time is 113.57 seconds.
