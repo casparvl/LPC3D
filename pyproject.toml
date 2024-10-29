@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "LPC3D"
+version = "0.1.0"
+description = "A package for LPC3D functionality"
+readme = "README.md"
+requires-python = ">=3.6"
+authors = [
+    { name = "Your Name", email = "your.email@example.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+
+dependencies = [
+    'pystencils',
+    'numba',
+    'ipython',
+    'matplotlib',
+    'pyevtk',
+]
+
+# Including the single Python file as a module
+[project.optional-dependencies]
+dev = ["pytest"]  # Example: optional dependencies for development
+
+[tool.setuptools]
+py-modules = ["LPC3D"]
