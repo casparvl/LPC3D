@@ -9,11 +9,12 @@ description = "A package for LPC3D functionality"
 readme = "README.md"
 requires-python = ">=3.6"
 authors = [
-    { name = "Your Name", email = "your.email@example.com" }
+    { name = "Céline Merlet", email = "celine.merlet.fr@gmail.com" },
+    { name = "El Hassane Lahrar", email = "lahrar.el@gmail.com" }
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: GNU General Public License v3 (GPL-3.0)"
 ]
 
 dependencies = [
@@ -24,9 +25,8 @@ dependencies = [
     'pyevtk',
 ]
 
-# Including the single Python file as a module
-[project.optional-dependencies]
-dev = ["pytest"]  # Example: optional dependencies for development
+[project.scripts]
+lpc3d = "LPC3D:main" 
 
-[tool.setuptools]
-py-modules = ["LPC3D"]
+[project.optional-dependencies]
+gpu = ["cupy-cuda"]
