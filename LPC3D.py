@@ -9,8 +9,8 @@ porous carbon electrodes in supercapacitors:
 In this model, bulk, carbon electrode, and full supercapacitor are simulated and their structures are represented as tridimensional set of inter-connected
 discrete sites, separated by a lattice spacing, "a".
 
-To execute the program, you have to launch it with an input file (lattice_gas.inpt): python3 3D_Lattice_SC.py.
-You can find more informations about setting up the environment for CPU and GPU calculations in the manual software in Github page: 
+To execute the program, you have to launch it with an input file: python3 LPC3D.py -i filename.
+You can find more informations about setting up the environment for CPU and GPU calculations in the manual software in Github. 
 
 The structure of the input file : 
 
@@ -29,7 +29,9 @@ Please use an even number of values.
 12th line:
   - no 12th line if equi=0
   - if equi=1: number of steps for the equilibration process (> Nstep)
-13th line: number of blocks (> Nblocks)
+13th line: electrode nature (porous-carbon or particles) (> elec−nature)
+– if elec-nature is particles, give a xyz file for ”B” (bulk) and ”P” particles (> partcile file)
+14th line: number of blocks (> Nblocks)
    - We divide the simulation lattice into blocks along the z-axis
 PS: All blocks should have the same size
 After this line, the uploaded files differ depending on the block nature. Block nature: bulk or electrode
@@ -37,20 +39,20 @@ After this line, the uploaded files differ depending on the block nature. Block 
 ##################################### Bulk type simulations#########################################
 
 if N blocks =1:
-14th line: An empty line
-15th line: block nature (> bulk)
-16th line: xmin,xmax,ymin,ymax,zmin,zmax coordinates of the block
-17th line: density of the bulk  (> dens_bulk)
-18th line: frequency of the bulk (in ppm) (> Nfreq)
+15th line: An empty line
+16th line: block nature (> bulk)
+17th line: xmin,xmax,ymin,ymax,zmin,zmax coordinates of the block
+18th line: density of the bulk  (> dens_bulk)
+19th line: frequency of the bulk (in ppm) (> Nfreq)
 
 ##################################### Electrode type simulations#########################################
 
 if N blocks =1:
-14th line: An empty line
-15th line: block nature (> electrode)
-16th line: electrode is filled with fluid or not? 0 if no, 1 if yes (> fielectrode)
-17th line: xmin,xmax,ymin,ymax,zmin,zmax coordinates of the block
-18th line: name of the file with pore size distribution (> namepsd)
+15th line: An empty line
+16th line: block nature (> electrode)
+17th line: electrode is filled with fluid or not? 0 if no, 1 if yes (> fielectrode)
+18th line: xmin,xmax,ymin,ymax,zmin,zmax coordinates of the block
+19th line: name of the file with pore size distribution (> namepsd)
 The first column should be in ˚A, the second column is the probability.
 19th line: name of the file with pores size as a function of density and frequency (> name_poresize_dens_freq) The first column
 should be in ˚A, the second column is the densities of the fluid and the third column is the frequencies and should be in ppm.
