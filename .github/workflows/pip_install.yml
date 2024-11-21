@@ -38,8 +38,6 @@ jobs:
           # Could be used to e.g. put the package on pipy
           # See https://setuptools.pypa.io/en/latest/userguide/quickstart.html
           run: |
-            # Check which pystencils versions are available, for easier debugging in case of failing CI
-            module avail pystencils
             # Load pystencils to make it available as dependency
             module load Python/${{ matrix.python-version }}
 
@@ -59,8 +57,6 @@ jobs:
         - name: LPC3D against EESSI deps from distribution tarball
           # This will test if we can pip install from the distribution tarball we just made
           run: |
-            # Check which pystencils versions are available, for easier debugging in case of failing CI
-            module avail pystencils
             # Load pystencils to make it available as dependency
             module load pystencils/${{ matrix.pystencil-version }}
             module load matplotlib/${{ matrix.matplotlib-version }}
@@ -82,8 +78,6 @@ jobs:
 
         - name: LPC3D against EESSI deps with pip install .
           run: |
-            # Check which pystencils versions are available, for easier debugging in case of failing CI
-            module avail pystencils
             # Load pystencils to make it available as dependency
             module load pystencils/${{ matrix.pystencil-version }}
             module load matplotlib/${{ matrix.matplotlib-version }}
@@ -104,8 +98,6 @@ jobs:
 
         - name: LPC3D against EESSI deps with pip install git+https
           run: |
-            # Check which pystencils versions are available, for easier debugging in case of failing CI
-            module avail pystencils
             # Load pystencils to make it available as dependency
             module load pystencils/${{ matrix.pystencil-version }}
             module load matplotlib/${{ matrix.matplotlib-version }}
