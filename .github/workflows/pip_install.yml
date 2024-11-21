@@ -48,6 +48,9 @@ jobs:
             # Install build
             pip install --upgrade build
 
+            # Check current working dir
+            ls -al
+
             # Build the source distribution
             python -m build
 
