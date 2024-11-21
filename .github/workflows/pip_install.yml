@@ -41,7 +41,7 @@ jobs:
             # Check which pystencils versions are available, for easier debugging in case of failing CI
             module avail pystencils
             # Load pystencils to make it available as dependency
-            module load python/${{ python-version }}
+            module load python/${{ matrix.python-version }}
 
             # Create virtualenv for this step
             python -m venv build_dist_env
@@ -63,8 +63,8 @@ jobs:
             module avail pystencils
             # Load pystencils to make it available as dependency
             module load pystencils/${{ matrix.pystencil-version }}
-            module load matplotlib/${{ matplotlib-version }}
-            module load IPython/${{ ipython-version }}
+            module load matplotlib/${{ matrix.matplotlib-version }}
+            module load IPython/${{ matrix.ipython-version }}
 
             # Create virtualenv for this step
             python -m venv install_from_dist_env
@@ -86,8 +86,8 @@ jobs:
             module avail pystencils
             # Load pystencils to make it available as dependency
             module load pystencils/${{ matrix.pystencil-version }}
-            module load matplotlib/${{ matplotlib-version }}
-            module load IPython/${{ ipython-version }}
+            module load matplotlib/${{ matrix.matplotlib-version }}
+            module load IPython/${{ matrix.ipython-version }}
 
             # Create virtualenv for this step
             python -m venv install_from_clone
@@ -108,8 +108,8 @@ jobs:
             module avail pystencils
             # Load pystencils to make it available as dependency
             module load pystencils/${{ matrix.pystencil-version }}
-            module load matplotlib/${{ matplotlib-version }}
-            module load IPython/${{ ipython-version }}
+            module load matplotlib/${{ matrix.matplotlib-version }}
+            module load IPython/${{ matrix.ipython-version }}
 
             # Create virtualenv for this step
             python -m venv install_from_git
