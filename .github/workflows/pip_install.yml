@@ -9,9 +9,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # We can test against multiple pystencil-versions, but currently, there is only one in EESSI
-        # See https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow
-        pystencil-version: ['1.3.4-gfbf-2023b']
+        include:
+          # We can test against multiple combinations of versions.
+          # We currently include one set of versions for all dependencies, based on the 2023b toolchain
+          # See https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow
+          # on how to use matrix: and include:
+          - pystencil-version: '1.3.4-gfbf-2023b'
+            python-version: '3.11.5-GCCcore-13.2.0'
+            matplotlib-version: '3.8.2-gfbf-2023b'
+            ipython-version: '8.17.2-GCCcore-13.2.0'
+            # There is no numba in 2023b... we should include this eventually
+            # For now, the pip install will just pull it in as dependency
+            # numba-version: ''
     steps:
         - name: Check out repository
           uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
@@ -27,6 +36,11 @@ jobs:
           # Could be used to e.g. put the package on pipy
           # See https://setuptools.pypa.io/en/latest/userguide/quickstart.html
           run: |
+            # Check which pystencils versions are available, for easier debugging in case of failing CI
+            module avail pystencils
+            # Load pystencils to make it available as dependency
+            module load python/${{ python-version }}
+
             # Create virtualenv for this step
             python -m venv build_dist_env
             source build_dist_env/bin/activate
@@ -42,17 +56,20 @@ jobs:
         - name: LPC3D against EESSI deps from distribution tarball
           # This will test if we can pip install from the distribution tarball we just made
           run: |
-            # Create virtualenv for this step
+            # Check which pystencils versions are available, for easier debugging in case of failing CI
+            module avail pystencils
+            # Load pystencils to make it available as dependency
+            module load pystencils/${{ matrix.pystencil-version }}
+            module load matplotlib/${{ matplotlib-version }}
+            module load IPython/${{ ipython-version }}
+
+           # Create virtualenv for this step
             python -m venv install_from_dist_env
             source install_from_dist_env/bin/activate
 
             # Install from distribution tarball
             python -m pip install dist/lpc3d*.tar.gz
 
-            # Check which pystencils versions are available, for easier debugging in case of failing CI
-            module avail pystencils
-            # Load pystencils to make it available as dependency
-            module load pystencils/${{ matrix.pystencil-version }}
 
             # Check if the program runs
             lpc3d --help
@@ -61,17 +78,19 @@ jobs:
             deactivate
         - name: LPC3D against EESSI deps with pip install .
           run: |
+            # Check which pystencils versions are available, for easier debugging in case of failing CI
+            module avail pystencils
+            # Load pystencils to make it available as dependency
+            module load pystencils/${{ matrix.pystencil-version }}
+            module load matplotlib/${{ matplotlib-version }}
+            module load IPython/${{ ipython-version }}
+
             # Create virtualenv for this step
             python -m venv install_from_clone
             source install_from_clone/bin/activate
 
             # Install from clone
             pip install .
-
-            # Check which pystencils versions are available, for easier debugging in case of failing CI
-            module avail pystencils
-            # Load pystencils to make it available as dependency
-            module load pystencils/${{ matrix.pystencil-version }}
 
             # Check if program runs
             lpc3d --help
@@ -80,17 +99,19 @@ jobs:
             deactivate
         - name: LPC3D against EESSI deps with pip install git+https
           run: |
+            # Check which pystencils versions are available, for easier debugging in case of failing CI
+            module avail pystencils
+            # Load pystencils to make it available as dependency
+            module load pystencils/${{ matrix.pystencil-version }}
+            module load matplotlib/${{ matplotlib-version }}
+            module load IPython/${{ ipython-version }}
+
             # Create virtualenv for this step
             python -m venv install_from_git
             source install_from_git/bin/activate
 
             # Install from clone
             pip install "git+$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git@$GITHUB_SHA"
-
-            # Check which pystencils versions are available, for easier debugging in case of failing CI
-            module avail pystencils
-            # Load pystencils to make it available as dependency
-            module load pystencils/${{ matrix.pystencil-version }}
 
             # Check if program runs
             lpc3d --help
