@@ -26,7 +26,7 @@ jobs:
           uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
           with:
             persist-credentials: false
-            fetch-depth: 0
+            path: LPC3D
 
         - name: Setup EESSI
           uses: eessi/github-action-eessi@v3
@@ -38,7 +38,7 @@ jobs:
           # Could be used to e.g. put the package on pipy
           # See https://setuptools.pypa.io/en/latest/userguide/quickstart.html
           run: |
-            # Load pystencils to make it available as dependency
+            # Load Python to make it available as dependency
             module load Python/${{ matrix.python-version }}
 
             # Create virtualenv for this step
@@ -48,8 +48,8 @@ jobs:
             # Install build
             pip install --upgrade build
 
-            # Check current working dir
-            ls -al
+            # Change dir to repo
+            cd LPC3D
 
             # Build the source distribution
             python -m build
@@ -68,6 +68,9 @@ jobs:
             # Create virtualenv for this step
             python -m venv install_from_dist_env
             source install_from_dist_env/bin/activate
+
+            # Change dir to repo
+            cd LPC3D
 
             # Install from distribution tarball
             python -m pip install dist/lpc3d*.tar.gz
@@ -89,6 +92,9 @@ jobs:
             # Create virtualenv for this step
             python -m venv install_from_clone
             source install_from_clone/bin/activate
+
+            # Change dir to repo
+            cd LPC3D
 
             # Install from clone
             pip install .
