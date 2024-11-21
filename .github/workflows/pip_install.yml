@@ -41,7 +41,7 @@ jobs:
             # Check which pystencils versions are available, for easier debugging in case of failing CI
             module avail pystencils
             # Load pystencils to make it available as dependency
-            module load python/${{ matrix.python-version }}
+            module load Python/${{ matrix.python-version }}
 
             # Create virtualenv for this step
             python -m venv build_dist_env
