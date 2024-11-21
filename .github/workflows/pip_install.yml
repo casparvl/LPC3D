@@ -52,7 +52,7 @@ jobs:
             python -m build
 
             # Deactivate the virtualenv
-            deactivate
+            # deactivate
 
         - name: LPC3D against EESSI deps from distribution tarball
           # This will test if we can pip install from the distribution tarball we just made
