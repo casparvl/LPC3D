@@ -53,6 +53,7 @@ jobs:
 
             # Deactivate the virtualenv
             deactivate
+
         - name: LPC3D against EESSI deps from distribution tarball
           # This will test if we can pip install from the distribution tarball we just made
           run: |
@@ -76,6 +77,7 @@ jobs:
 
             # Deactivate virtualenv
             deactivate
+
         - name: LPC3D against EESSI deps with pip install .
           run: |
             # Check which pystencils versions are available, for easier debugging in case of failing CI
@@ -97,6 +99,7 @@ jobs:
 
             # Deactivate virtualenv
             deactivate
+
         - name: LPC3D against EESSI deps with pip install git+https
           run: |
             # Check which pystencils versions are available, for easier debugging in case of failing CI
@@ -118,3 +121,4 @@ jobs:
 
             # Deactivate virtualenv
             deactivate
+
