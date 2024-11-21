@@ -23,14 +23,16 @@ jobs:
             # numba-version: ''
     steps:
         - name: Check out repository
-          uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+          uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
           with:
             persist-credentials: false
             fetch-depth: 0
+
         - name: Setup EESSI
           uses: eessi/github-action-eessi@v3
           with:
             eessi_stack_version: "2023.06"
+
         - name: build LPC3D distribution
           # This will test if we can create a distribution tarball/wheel/etc
           # Could be used to e.g. put the package on pipy
@@ -52,7 +54,7 @@ jobs:
             python -m build
 
             # Deactivate the virtualenv
-            # deactivate
+            deactivate
 
         - name: LPC3D against EESSI deps from distribution tarball
           # This will test if we can pip install from the distribution tarball we just made
@@ -64,7 +66,7 @@ jobs:
             module load matplotlib/${{ matplotlib-version }}
             module load IPython/${{ ipython-version }}
 
-           # Create virtualenv for this step
+            # Create virtualenv for this step
             python -m venv install_from_dist_env
             source install_from_dist_env/bin/activate
 
