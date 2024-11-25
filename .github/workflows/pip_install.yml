@@ -18,6 +18,7 @@ jobs:
             python-version: '3.11.5-GCCcore-13.2.0'
             matplotlib-version: '3.8.2-gfbf-2023b'
             ipython-version: '8.17.2-GCCcore-13.2.0'
+            scipy-bundle-version: '2023.11-gfbf-2023b'  # for numpy
             # There is no numba in 2023b... we should include this eventually
             # For now, the pip install will just pull it in as dependency
             # numba-version: ''
@@ -64,6 +65,7 @@ jobs:
             module load pystencils/${{ matrix.pystencil-version }}
             module load matplotlib/${{ matrix.matplotlib-version }}
             module load IPython/${{ matrix.ipython-version }}
+            module load SciPy-bundle/${{ matrix.scipy-bundle-version }}
 
             # Create virtualenv for this step
             python -m venv install_from_dist_env
@@ -88,6 +90,7 @@ jobs:
             module load pystencils/${{ matrix.pystencil-version }}
             module load matplotlib/${{ matrix.matplotlib-version }}
             module load IPython/${{ matrix.ipython-version }}
+            module load SciPy-bundle/${{ matrix.scipy-bundle-version }}
 
             # Create virtualenv for this step
             python -m venv install_from_clone
@@ -111,6 +114,7 @@ jobs:
             module load pystencils/${{ matrix.pystencil-version }}
             module load matplotlib/${{ matrix.matplotlib-version }}
             module load IPython/${{ matrix.ipython-version }}
+            module load SciPy-bundle/${{ matrix.scipy-bundle-version }}
 
             # Create virtualenv for this step
             python -m venv install_from_git
